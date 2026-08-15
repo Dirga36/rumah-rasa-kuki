@@ -43,13 +43,13 @@ export function CartDrawer() {
       clear();
       setOpen(false);
 
-      if (WHATSAPP_NUMBER) {
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener");
-      } else {
-        toast.success(`Pesanan ${result.orderNumber} tersimpan`, {
-          description: "Nomor WhatsApp toko belum diatur, jadi pesan otomatis belum bisa dikirim.",
-        });
-      }
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+      toast.success(`Pesanan ${result.orderNumber} tersimpan`, {
+        description: "Mengarahkan ke WhatsApp untuk konfirmasi pesanan.",
+      });
+
+      const opened = window.open(waUrl, "_blank", "noopener");
+      if (!opened) window.location.href = waUrl;
     },
     onError: (error: Error) => toast.error("Checkout gagal", { description: error.message }),
   });
