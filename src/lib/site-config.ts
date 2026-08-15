@@ -1,8 +1,7 @@
 /**
- * Nomor WhatsApp toko. Belum diisi karena tidak ada data kontak resmi yang diberikan.
- * Isi dengan format internasional tanpa tanda "+" atau spasi, contoh: "6281234567890".
+ * Nomor WhatsApp toko, format internasional tanpa "+" atau spasi.
  */
-export const WHATSAPP_NUMBER = "";
+export const WHATSAPP_NUMBER = "6289519692875";
 
 export const BRAND_NAME = "Rasa Rumah Cookies";
 export const HAMPERS_HASHTAG = "#KejutanRasaRumah";
