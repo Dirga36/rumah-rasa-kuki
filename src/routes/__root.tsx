@@ -11,6 +11,11 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CartProvider } from "@/lib/cart";
+import { Header } from "@/components/Header";
+import { CartDrawer } from "@/components/CartDrawer";
+import { CaregiverChat } from "@/components/CaregiverChat";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -121,8 +126,22 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <CartProvider>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </main>
+          <footer className="border-t border-border/70 py-8 text-center text-sm text-muted-foreground">
+            <p className="font-semibold text-foreground">Rasa Rumah Cookies</p>
+            <p className="mt-1">Dipanggang segar, dibagikan dengan hangat.</p>
+          </footer>
+        </div>
+        <CartDrawer />
+        <CaregiverChat />
+        <Toaster position="top-center" richColors />
+      </CartProvider>
     </QueryClientProvider>
   );
 }
