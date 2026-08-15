@@ -55,8 +55,14 @@ export function CartDrawer() {
   });
 
   function checkout() {
-    if (name.trim().length < 2) return toast.error("Mohon isi nama lengkap");
-    if (phone.trim().length < 6) return toast.error("Mohon isi nomor telepon yang valid");
+    if (name.trim().length < 2) {
+      toast.error("Mohon isi nama lengkap");
+      return;
+    }
+    if (phone.trim().length < 6) {
+      toast.error("Mohon isi nomor telepon yang valid");
+      return;
+    }
     mutation.mutate({
       data: {
         customer_name: name.trim(),
