@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export type HampersDetails = {
   items: string[];
-  greeting_card?: string;
+  greeting_card?: string | undefined;
 };
 
 export type CartItem = {
