@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.3",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "rasa-rumah-e-commerce",
+      "version": "0.1.0",
+      "title": "Rasa Rumah E-Commerce"
+    },
+    "tools": [
+      {
+        "name": "list_categories",
+        "title": "List cookie categories",
+        "description": "List all product categories in the Rasa Rumah Cookies catalog.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_products",
+        "title": "List cookie products",
+        "description": "List active Rasa Rumah Cookies products with price, remaining batch stock and flags. Optionally filter by category slug, gluten-free or best seller.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "category_slug": {
+              "description": "Category slug to filter by.",
+              "type": "string",
+              "minLength": 1
+            },
+            "gluten_free": {
+              "description": "Only gluten-free variants.",
+              "type": "boolean"
+            },
+            "best_seller": {
+              "description": "Only best sellers.",
+              "type": "boolean"
+            },
+            "limit": {
+              "description": "Max products to return (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Get a cookie product",
+        "description": "Get details of one active product by its slug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Product slug."
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
