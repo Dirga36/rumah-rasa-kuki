@@ -13,6 +13,7 @@ export default defineTool({
     best_seller: z.boolean().optional().describe("Only best sellers."),
     limit: z.number().int().min(1).max(50).optional().describe("Max products to return (default 20)."),
   },
+  outputSchema: { products: z.array(z.record(z.string(), z.unknown())) },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async ({ category_slug, gluten_free, best_seller, limit }) => {
     const supabase = supabaseAnon();

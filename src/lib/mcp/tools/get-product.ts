@@ -7,6 +7,7 @@ export default defineTool({
   title: "Get a cookie product",
   description: "Get details of one active product by its slug.",
   inputSchema: { slug: z.string().trim().min(1).describe("Product slug.") },
+  outputSchema: { product: z.record(z.string(), z.unknown()) },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async ({ slug }) => {
     const supabase = supabaseAnon();
